@@ -1,8 +1,8 @@
 {
-  "name": "@hellowuxin/mindmap",
+  "name": "mindmap-markdown",
   "version": "2.1.4",
   "description": "Mindmap Vue Component",
-  "author": "伍鑫",
+  "author": "小明",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
