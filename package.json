@@ -2,7 +2,7 @@
   "name": "mind-markdown",
   "version": "1.0.0",
   "description": "Mind & Markdown Vue Component",
-  "author": "小明",
+  "author": "fortest",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

@@ -1,12 +1,14 @@
 interface Data {
-  name: string
+  name: string,
+  content: string,
   children?: Array<Data>
   _children?: Array<Data>
   left?: boolean
 }
 
 interface Mdata {
-  name: string
+  name: string,
+  content: string,
   id: string
   color: string
   gKey: number

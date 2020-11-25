@@ -45,7 +45,10 @@
       >
         <i class="redo"></i>
       </button>
+      <button classs='icon' ref="save" type="button" @click="save()" style='border: 1px solid #CCC;padding: 2px;border-radius: 2px;display:inline-block;'>PRINT</button>
+      
     </div>
+    
     <div class="pop-ups" v-show="showPopUps">
       <div class="layer"></div>
       <div class="content">
@@ -100,6 +103,8 @@ export default class MindMap extends Vue {
   @Prop({ default: true }) zoomable!: boolean
   @Prop({ default: true }) showUndo!: boolean
   @Prop({ default: 4 }) strokeWidth!: number
+  @Prop({ default: ''}) content!: string
+  @Prop({ default: ''}) nodeId!: string
   @Model('change', { required: true }) value!: Array<Data>
 
   @Watch('keyboard')
@@ -120,6 +125,13 @@ export default class MindMap extends Vue {
   onYSpacingChanged() { this.updateMindmap() }
   @Watch('zoomable')
   onZoomableChanged(val: boolean) { this.makeZoom(val) }
+  @Watch('content')
+  onContentChanged(){
+    console.log('call on content change.');
+    if(this.nodeId != null && this.nodeId !== "" && this.content != null){
+      mmdata.setContent(this.nodeId, this.content);
+    }
+  }
 
   $refs!: {
     mindmap: HTMLDivElement
@@ -301,6 +313,10 @@ export default class MindMap extends Vue {
       this.updateMmdata(this.history.redo())
     }
   }
+  save() {
+    console.log('save');
+    console.log(JSON.stringify(mmdata));
+  }
   downloadFile(content: string, filename: string) {
     const eleLink = document.createElement('a')
     eleLink.download = filename
@@ -444,7 +460,7 @@ export default class MindMap extends Vue {
         switch (keyName) {
           case 'Tab': {
             d3.event.preventDefault()
-            const nd = this.add(im, { name: '' })
+            const nd = this.add(im, { name: '', content: '' })
             if (nd) {
               this.editNew(nd, seleDepth + 1, pNode)
             }
@@ -453,12 +469,12 @@ export default class MindMap extends Vue {
           case 'Enter': {
             d3.event.preventDefault()
             if (pNode === this.$refs.content) { // 根节点enter时，等效tab
-              const nd = this.add(im, { name: '' })
+              const nd = this.add(im, { name: '', content: '' })
               if (nd) {
                 this.editNew(nd, seleDepth + 1, pNode)
               }
             } else {
-              const nd = this.insert(im, { name: '' }, 1)
+              const nd = this.insert(im, { name: '', content: '' }, 1)
               if (nd) {
                 this.editNew(nd, seleDepth, pNode)
               }
@@ -511,6 +527,7 @@ export default class MindMap extends Vue {
     if (n.getAttribute('id') !== 'selectedNode') {
       this.removeSelectedId()
       n.setAttribute('id', 'selectedNode')
+      //TODO export content to options
     }
   }
   editNode(n: Element) { // 编辑节点
@@ -588,6 +605,7 @@ export default class MindMap extends Vue {
       } else {
         sele.setAttribute('__click__', '1')
         if (!dragFlag) {
+          // TRIGGER CLICK CALLBACK
           this.$emit('click', mmdata.getSource(d.data.id), d.data.id)
         }
       }
@@ -630,7 +648,7 @@ export default class MindMap extends Vue {
     if ((n[i] as SVGElement).style.opacity === '1') {
       d3.event.stopPropagation()
       const d: FlexNode = d3.select(n[i].parentNode as Element).data()[0] as FlexNode
-      const newD = this.add(d.data, { name: '' })
+      const newD = this.add(d.data, { name: '', content: '' })
       this.mouseLeave(d, i, n)
       if (newD) {
         this.editNew(newD, d.depth + 1, n[i].parentNode as Element)
@@ -1058,5 +1076,5 @@ export default class MindMap extends Vue {
 </script>
 
 <style lang="scss">
-  @import '../css/MindMap.scss'
+  @import './MindMap.scss'
 </style>

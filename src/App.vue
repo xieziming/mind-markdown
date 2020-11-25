@@ -32,6 +32,8 @@
                     :ySpacing="ySpacing"
                     :strokeWidth="strokeWidth"
                     :download="options.download.value"
+                    :content="options.content.value"
+                    :nodeId="options.nodeId.value"
                     @updateNodeName="updateNodeName"
                     @click="click"
                   ></mindmap>
@@ -42,48 +44,11 @@
                 <div class="grey lighten-3">
                   <div class="d-flex px-3 title font-weight-regular align-center"
                     style="height: 48px"
-                  >Options</div>
+                  >Content</div>
                 </div>
                 <v-divider></v-divider>
-                <div class="py-3">
-                  <v-col class="pb-0" cols="12" v-for="(opt, key) in options" :key="key">
-                    <v-switch class="mt-0"
-                      hide-details
-                      inset
-                      v-model="opt.value"
-                      :label="key"
-                    ></v-switch>
-                  </v-col>
-                  <v-col class="pb-0" cols="12">
-                    <v-slider
-                      hide-details
-                      v-model="strokeWidth"
-                      label="strokeWidth"
-                      :thumb-size="20"
-                      thumb-label
-                      min="1"
-                      max="10"
-                    ></v-slider>
-                  </v-col>
-                  <v-col class="pb-0" cols="12">
-                    <v-slider
-                      hide-details
-                      v-model="xSpacing"
-                      label="xSpacing"
-                      :thumb-size="20"
-                      thumb-label
-                    ></v-slider>
-                  </v-col>
-                  <v-col class="pb-0" cols="12">
-                    <v-slider
-                      hide-details
-                      v-model="ySpacing"
-                      label="ySpacing"
-                      :thumb-size="20"
-                      thumb-label
-                    ></v-slider>
-                  </v-col>
-                </div>
+                
+                <textarea class='py-3 px-3' v-if="options.nodeId.value" v-model="options.content.value" style="width: 98%;margin: 10px 1%;border: 1px solid #CCCCCC"></textarea>
               </v-col>
             </v-row>
           </v-sheet>
@@ -118,6 +83,8 @@ export default class App extends Vue {
     zoomable: { value: true },
     showUndo: { value: true },
     download: { value: true },
+    nodeId: {value: ''},
+    content: {value: ''}
   }
   xSpacing = 50
   ySpacing = 20
@@ -127,7 +94,9 @@ export default class App extends Vue {
     console.log('updateNodeName', ...args)
   }
   click(...args: any) {
-    console.log('click', ...args)
+    console.log('click', ...args);
+    this.options.nodeId.value = args[1];
+    this.options.content.value = args[0]['content'];
   }
   mounted() {}
 }

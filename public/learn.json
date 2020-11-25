@@ -1,55 +1,62 @@
 [
   {
     "name":"如何学习D3",
+    "content":"asdasdasd",
     "children":
     [
       {
         "name":"预备知识",
+        "content":"asdasdasd",
         "children": [
-          { "name":"HTML & CSS" },
-          { "name":"JavaScript" },
-          { "name":"DOM" },
-          { "name":"SVG" },
-          { "name":"test" }
+          { "content":"asdasdasd","name":"HTML & CSS" },
+          { "content":"asdasdasd","name":"JavaScript" },
+          { "content":"asdasdasd","name":"DOM" },
+          { "content":"asdasdasd","name":"SVG" },
+          { "content":"asdasdasd","name":"test" }
         ]
       },
       { 
         "name":"安装",
+        "content":"asdasdasd",
         "_children": [
-          { "name": "折叠节点" }
+          { "content":"asdasdasd","name": "折叠节点" }
         ]
       },
       {
         "name":"入门",
+        "content":"asdasdasd",
         "children":[
-          { "name":"选择集" },
-          { "name":"test" },
-          { "name":"绑定数据" },
-          { "name":"添加删除元素" },
+          { "content":"asdasdasd","name":"选择集" },
+          { "content":"asdasdasd","name":"test" },
+          { "content":"asdasdasd","name":"绑定数据" },
+          { "content":"asdasdasd","name":"添加删除元素" },
           {
             "name":"简单图形",
+            "content":"asdasdasd",
             "children":
             [
-              { "name":"柱形图" },
-              { "name":"折线图" },
-              { "name":"散点图" }]
+              { "content":"asdasdasd","name":"柱形图" },
+              { "content":"asdasdasd","name":"折线图" },
+              { "content":"asdasdasd","name":"散点图" }]
           },
-          { "name":"比例尺" },
-          { "name":"生成器" },
-          { "name":"过渡" }
+          { "content":"asdasdasd","name":"比例尺" },
+          { "content":"asdasdasd","name":"生成器" },
+          { "content":"asdasdasd","name":"过渡" }
         ],
         "left": true
       },
       { 
         "name":"进阶",
+        "content":"asdasdasd",
         "left": true 
       },
       {
         "name":"一级节点",
+        "content":"asdasdasd",
         "children": [
-          { "name":"子节点1" },
-          { "name":"子节点2" },
-          { "name":"子节点3" }
+          { "content":"asdasdasd","name":"子节点1" },
+          { "content":"asdasdasd","name":"子节点2" },
+          { "content":"asdasdasd","name":"子节点3" }
         ]
       }
     ]
